@@ -1,8 +1,3 @@
-% Spectral reflection symmetry and periodic multiplicity structure
-% for quantum rotors on SO(3)/H
-% Target: J. Phys. A: Mathematical and Theoretical
-% v10 — Feb 2026
-
 \documentclass[12pt]{article}
 
 % ============================================================
@@ -41,13 +36,17 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Sym}{Sym}
+\newcommand{\SL}{\mathrm{SL}}
 
 % ============================================================
 % Title
 % ============================================================
 \title{Spectral reflection symmetry and periodic multiplicity structure\\
 for quantum rotors on $\SO(3)/H$}
-\author{}  % TODO: add authors
+\author{Alexandru Toader\\
+Independent\\
+\texttt{toader\_alexandru@yahoo.com}}
 \date{}
 
 \begin{document}
@@ -1183,6 +1182,24 @@ The triple equivalence reduces to:
 of~$H$ is non-cyclic $\Leftrightarrow$
 $Q_8 \subset 2H$ $\Leftrightarrow$
 $-1 \in [2H, 2H]$.
+
+% ============================================================
+\section*{Reproducibility}
+% ============================================================
+
+All computations use Python~3, NumPy, SciPy. Source code and a
+structured test suite (70~files, 1740~tests) are available at
+\url{https://github.com/alex-toader/st_spinorial_obstruction}.
+The test suite covers: entry-level verification of all paper tables,
+the reflection identity and binary occupation for all scalar characters
+on dicyclic groups $\mathrm{Dic}_n$ ($n = 2$--$101$), the converse
+formula and divisibility condition, above-threshold periodicity
+and threshold sharpness, the Sylow-based proof chain
+(B)$\,\Rightarrow\,$non-cyclic$\,\Rightarrow\,V_4\,\Rightarrow\,Q_8\,\Rightarrow\,$(A),
+symmetry-breaking phase diagrams, sector-selective duality for odd
+dihedral groups, and the Molien--Gorenstein connection.
+Negative results (SU(3), Spin(4), heat kernel) are also included.
+All numerical claims in this paper are backed by reproducible scripts.
 
 % ============================================================
 \begin{thebibliography}{99}
