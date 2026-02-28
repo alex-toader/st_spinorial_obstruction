@@ -1,0 +1,1303 @@
+% Spectral reflection symmetry and periodic multiplicity structure
+% for quantum rotors on SO(3)/H
+% Target: J. Phys. A: Mathematical and Theoretical
+% v10 — Feb 2026
+
+\documentclass[12pt]{article}
+
+% ============================================================
+% Packages
+% ============================================================
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ============================================================
+% Notation
+% ============================================================
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\Hil}{\mathcal{H}}
+\newcommand{\identity}{\mathbf{1}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\UU}{\mathrm{U}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcm}{lcm}
+
+% ============================================================
+% Title
+% ============================================================
+\title{Spectral reflection symmetry and periodic multiplicity structure\\
+for quantum rotors on $\SO(3)/H$}
+\author{}  % TODO: add authors
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+The scalar spectrum of a quantum rotor on $\SO(3)/H$
+decomposes into superselection sectors labelled by
+one-dimensional characters of $\pi_1 = 2H \subset \SU(2)$.
+We prove that the sub-threshold multiplicities satisfy the
+reflection identity
+$m(\chi,j) + m(\chi, j^*{-}j) = 1$
+for every scalar character~$\chi$
+if and only if a divisibility condition~(B) on element orders
+holds, and that~(B) is equivalent to the commutator
+obstruction $-1 \in [2H,2H]$.
+Under~(B), the multiplicity function decomposes as a linear
+drift plus a periodic binary residual with period $P = |H|/2$,
+from which binary occupation, regular-representation tiling,
+and threshold sharpness follow as immediate corollaries.
+Under symmetry breaking $H \to K$ with $Q_8 \not\subset 2K$,
+spinorial sectors reappear; for odd dihedral groups,
+the reflection fails globally but persists in
+spinorial sectors.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+A rigid quantum rotor whose orientational symmetry is that of a
+finite subgroup $H \subset \SO(3)$~\cite{BunkerJensen2006,Zhilinskii2001}
+lives on the configuration space $M = \SO(3)/H$.
+Because $M$ is multiply connected, with fundamental group
+$\pi_1(M) \cong 2H \subset \SU(2)$, quantization splits into
+superselection sectors indexed by one-dimensional characters
+$\chi \colon 2H \to \UU(1)$~\cite{Schulman1968, LaidlawDeWitt1971,
+Dowker1972, Isham1984}.
+The Hamiltonian $\hat{H} = \mathbf{L}^2/2I$ gives eigenvalues
+$E_j = Bj(j{+}1)$, where $B = \hbar^2/2I$, and each sector
+carries its own multiplicity function
+$m(\chi,j)$ counting how often level~$j$ appears.
+Under a $2\pi$ rotation the wave function acquires the phase
+$\chi(-1)$: sectors with $\chi(-1) = +1$ are
+\emph{tensorial}, those with $\chi(-1) = -1$ \emph{spinorial}.
+
+For the polyhedral groups ($T$, $O$, $I$), the element
+$-1$ lies in the commutator subgroup of~$2H$, forcing
+$\chi(-1) = +1$ for every one-dimensional character:
+no spinorial sector exists.
+Under a trigonal distortion $O \to D_3$, the obstruction lifts:
+spinorial sectors reappear with gap $3.75B$, while the
+trivial-sector gap reduces from $20B$ to $6B$
+(Table~\ref{tab:densification}).
+
+\begin{theorem}[Spectral reflection $\Leftrightarrow$ divisibility]
+\label{thm:main}
+Let $H \subset \SO(3)$ be a finite subgroup with
+$|H|$ even, and set $j^* = |H|/2 - 1$.
+The following are equivalent:
+\begin{enumerate}
+  \item[\textup{(B)}] $|H|/\ord(h)$ is even for every
+    $h \in H \setminus\{e\}$;
+  \item[\textup{(C)}] $m(\chi,j) + m(\chi, j^*{-}j) = 1$
+    for every scalar character~$\chi$ and every
+    $j \le j^*$ of matching parity.
+\end{enumerate}
+The proof is given in \S\ref{sec:duality-theorem}.
+\end{theorem}
+
+\begin{proposition}[Topological link]
+\label{prop:intro-A-iff-B}
+For $G = 2H \subset \SU(2)$, condition~\textup{(B)} is
+equivalent to~\textup{(A)}: $-1 \in [G,G]$
+\textup{(}all scalar sectors are tensorial\textup{)}.
+The proof is given in \S\ref{sec:topological}.
+\end{proposition}
+
+\noindent
+Together, Theorem~\ref{thm:main} and
+Proposition~\ref{prop:intro-A-iff-B} give the triple equivalence
+\textup{(A)}$\,\Leftrightarrow\,$\textup{(B)}$\,\Leftrightarrow\,$\textup{(C)}.
+
+Individual octahedral multiplicities are
+classical~\cite{Hecht1960}, branching rules
+$\SU(2) \to 2H$ are standard~\cite{BrockerTomDieck1985,AltmannHerzig1994},
+and the group-theoretic equivalence
+(A)$\,\Leftrightarrow\,$(B) follows from known
+structure theory of finite subgroups of $\SU(2)$.
+What has not been observed previously is:
+\begin{enumerate}
+\item[(i)] the equivalence
+  (B)$\,\Leftrightarrow\,$(C): the sub-threshold
+  reflection $m(\chi,j) + m(\chi,j^*{-}j) = 1$
+  holds for \emph{all} scalar characters~$\chi$
+  if and only if the exponent saturates at $|H|/2$;
+\item[(ii)] sector-selective duality: when~(B) fails
+  for odd dihedral groups, the reflection survives in
+  spinorial sectors because the violating half-turn
+  classes are spectrally invisible at half-integer~$j$;
+\item[(iii)] the periodic staircase:
+  under~(B), $m(\chi, j{+}P) = m(\chi, j) + 1$
+  for $P = |H|/2$, yielding binary occupation,
+  regular-representation tiling, and threshold sharpness
+  as immediate corollaries.
+\end{enumerate}
+For the trivial character~$A_0$, the reflection
+follows from the Gorenstein property of the invariant
+ring $\CC[x,y]^{2H}$~\cite{Watanabe1974}; however,
+Gorenstein duality does not extend to non-trivial
+characters, and the full equivalence
+(B)$\,\Leftrightarrow\,$(C) for all scalar~$\chi$
+requires the mode-antisymmetry argument of
+Theorem~\ref{thm:duality}.
+
+Section~\ref{sec:framework} sets up the quantization framework.
+Section~\ref{sec:duality} proves the spectral reflection theorem
+and derives the periodic staircase.
+Section~\ref{sec:obstruction} connects the divisibility condition
+to the topological obstruction and examines re-entrance under
+symmetry breaking.
+Section~\ref{sec:discussion} discusses scope and open problems.
+
+% ============================================================
+\section{Framework}
+\label{sec:framework}
+% ============================================================
+
+\subsection{Configuration space and quantization sectors}
+\label{sec:config}
+
+For a finite subgroup $H \subset \SO(3)$, the configuration
+space $M = \SO(3)/H$ has fundamental group
+$\pi_1(M) \cong 2H$, the binary lift of~$H$
+in~$\SU(2)$~\cite{Mermin1979}, with $|2H| = 2|H|$.
+Path-integral quantization on~$M$ produces inequivalent
+scalar sectors indexed by one-dimensional characters
+$\chi \colon 2H \to \UU(1)$~\cite{Schulman1968, LaidlawDeWitt1971,
+ImboSudarshan1988, FinkelsteinRubinstein1968,
+Giulini1995, BalachandranEtAl1983, Mouchet2021}.
+Since one-dimensional characters factor through the
+abelianization, the number of scalar sectors is
+$\kappa = |(2H)^{\mathrm{ab}}|$.
+Explicitly: $(2C_n)^{\mathrm{ab}} \cong \ZZ_{2n}$,
+$(2D_n)^{\mathrm{ab}} \cong \ZZ_4$ ($n$ odd) or
+$\ZZ_2 \times \ZZ_2$ ($n$ even),
+$(2T)^{\mathrm{ab}} \cong \ZZ_3$,
+$(2O)^{\mathrm{ab}} \cong \ZZ_2$,
+$(2I)^{\mathrm{ab}} = \{1\}$.
+We write $A_0$ for the trivial character
+($A_0(g) = 1$ for all~$g$).
+
+The rigid-rotor Hamiltonian $\hat{H} = \mathbf{L}^2/2I$ has
+eigenvalues
+\begin{equation}
+  \label{eq:energy}
+  E_j = Bj(j{+}1), \qquad B = \hbar^2/2I,
+\end{equation}
+with degeneracy $2j{+}1$ (magnetic substates
+$m = -j, \ldots, j$).
+The element $-1 \in \SU(2)$ belongs to every binary
+group~$2H$ and is central; since $(-1)^2 = 1$, every
+one-dimensional character satisfies $\chi(-1) = \pm 1$.
+A sector is \emph{tensorial} if $\chi(-1) = +1$ and
+\emph{spinorial} if $\chi(-1) = -1$.
+
+\subsection{Mode functions and multiplicity formula}
+\label{sec:modes}
+
+The spin-$j$ representation $V_j$ of~$\SU(2)$ has
+dimension $2j{+}1$ and character
+\begin{equation}
+  \label{eq:su2-character}
+  \chi_j(g)
+  = \frac{\sin\bigl((2j{+}1)\alpha\bigr)}{\sin\alpha}\,,
+\end{equation}
+where $\alpha$ is the half-angle of~$g$
+(i.e., $g$ is conjugate to
+$\mathrm{diag}(e^{i\alpha}, e^{-i\alpha})$).
+The multiplicity of a scalar character $\chi$ in the
+restriction $V_j|_{2H}$ is~\cite{BrockerTomDieck1985}
+\begin{equation}
+  \label{eq:multiplicity}
+  m(\chi, j)
+  = \frac{1}{|2H|}\sum_{g \in 2H}
+    \overline{\chi(g)}\,\chi_j(g).
+\end{equation}
+
+Each non-central conjugacy class of~$H$ has elements of
+common $\SO(3)$~order~$d$; the corresponding elements
+in~$2H$ have half-angle $\alpha = \pi/d$.
+Define the \emph{mode function}
+\begin{equation}
+  \label{eq:mode}
+  f(\alpha, j)
+  = \frac{\sin\bigl((2j{+}1)\alpha\bigr)}{\sin\alpha}\,.
+\end{equation}
+Separating the two central elements $g = \pm 1$
+from~\eqref{eq:multiplicity}:
+\begin{equation}
+  \label{eq:mode-decomposition}
+  m(\chi, j)
+  = \frac{1}{|2H|}
+    \Bigl[
+      (2j{+}1) + \chi(-1)\,(-1)^{2j}\,(2j{+}1)
+      + \sum_{\beta} B_\beta(\chi)\, f(\beta, j)
+    \Bigr],
+\end{equation}
+where the sum runs over all distinct half-angles
+$\beta \in (0,\pi)$ of non-central conjugacy classes
+in~$2H$, and
+$B_\beta(\chi)
+= \sum_{\substack{g \in 2H\\
+\text{half-angle}(g)=\beta}}
+\overline{\chi(g)}$
+is the $\overline{\chi}$-weight at half-angle~$\beta$.
+(For integer~$j$, one may group $\beta$ and
+$\pi{-}\beta$ since
+$f(\pi{-}\beta,j) = f(\beta,j)$; this fails at
+half-integer~$j$ where
+$f(\pi{-}\beta,j) = -f(\beta,j)$.)
+
+\subsection{The divisibility condition}
+\label{sec:divisibility}
+
+Table~\ref{tab:spectral} records the scalar state count
+for the principal configuration spaces.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lcccc@{}}
+  \toprule
+  Space & $|2H|$ & $\kappa$ & $j_1$
+        & $j^*$ \\
+  \midrule
+  $\SO(3)/T$   &   24 & 3 & $2$
+    & $5$   \\
+  $\SO(3)/O$   &   48 & 2 & $3$
+    & $11$  \\
+  $\SO(3)/I$   &  120 & 1 & $6$
+    & $29$ \\
+  \midrule
+  $\SO(3)/D_3$ &   12 & 4 & $1$
+    & $2$   \\
+  \bottomrule
+\end{tabular}
+\caption{Scalar quantization data for the principal
+  configuration spaces with $|H|$ even.
+  $\kappa$: number of scalar sectors.
+  $j_1$: lowest $j > 0$ with $m(\chi, j) \geq 1$
+  for some scalar~$\chi$.
+  $j^* = |H|/2 - 1$: spectral threshold~\eqref{eq:threshold}.
+  Top three groups satisfy~(B); $D_3$ does not
+  (\S\ref{sec:reentrance}).}
+\label{tab:spectral}
+\end{table}
+
+For $H \subset \SO(3)$ finite with $|H|$ even, the
+\emph{spectral threshold} is
+\begin{equation}
+  \label{eq:threshold}
+  j^* = |H|/2 - 1.
+\end{equation}
+This is the unique value making $\dim V_j + \dim V_{j^*-j} = |H|$
+for all~$j$.
+
+\begin{definition}[Divisibility condition]
+  \label{def:divisibility}
+  The group $H \subset \SO(3)$ satisfies the
+  \emph{divisibility condition}~(B) if
+  $|H|/\ord(h)$ is even for every
+  $h \in H \setminus \{e\}$.
+\end{definition}
+
+\noindent
+Three equivalent formulations are useful:
+\begin{enumerate}
+  \item[\textup{(B$_1$)}] \emph{Element-wise:}
+    $|H|/\ord(h)$ is even for every $h \neq e$.
+  \item[\textup{(B$_2$)}] \emph{Exponent:}
+    $\exp(H) \mid |H|/2$, where
+    $\exp(H) = \lcm\{\ord(h) : h \in H\}$.
+  \item[\textup{(B$_3$)}] \emph{$2$-adic:}
+    $v_2(\ord(h)) < v_2(|H|)$ for every $h \neq e$.
+\end{enumerate}
+The equivalences are immediate:
+(B$_1$)$\,\Leftrightarrow\,$(B$_2$) by taking the least common
+multiple, and (B$_1$)$\,\Leftrightarrow\,$(B$_3$) by definition
+of the $2$-adic valuation.
+When $|H|$ is odd, $j^*$ is not an integer and~(B) fails
+vacuously; such groups are excluded throughout.
+
+% ============================================================
+\section{Spectral reflection theorem}
+\label{sec:duality}
+% ============================================================
+
+\subsection{Mode antisymmetry}
+\label{sec:antisymmetry}
+
+We use only that finite subgroups of $\SO(3)$ consist of
+rotations of finite order, so each non-central conjugacy class
+has half-angle $k'\pi/d$ with $d \mid |H|$.
+
+\begin{lemma}[Mode antisymmetry]
+  \label{lem:antisymmetry}
+  If~\textup{(B)} holds, then for every non-central
+  conjugacy class with half-angle~$\alpha$:
+  \begin{equation}
+    \label{eq:mode-antisymmetry}
+    f(\alpha, j) + f(\alpha, j^*{-}j) = 0
+    \qquad\text{for all } j.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  Set $K = |H|/d$ where $d$ is the $\SO(3)$ order
+  of the class.
+  An element of order~$d$
+  is a rotation by angle $2\pi k'/d$ with
+  $\gcd(k', d) = 1$, so its $\SU(2)$ lift has
+  half-angle $\alpha = k'\pi/d$.
+  Since $2j^*{+}1 = |H| - 1$:
+  \[
+    (2(j^*{-}j){+}1)\alpha
+    = (|H|{-}1{-}2j)\,\frac{k'\pi}{d}
+    = k'K\pi - (2j{+}1)\alpha.
+  \]
+  The identity
+  $\sin(m\pi - x) = (-1)^{m+1}\sin(x)$ gives
+  $f(\alpha, j^*{-}j) = (-1)^{k'K+1}\,f(\alpha, j)$.
+  Condition~(B) requires $K$ even, so $k'K$ is even
+  and $(-1)^{k'K+1} = -1$.
+\end{proof}
+
+\subsection{Exponent saturation}
+\label{sec:exponent}
+
+\begin{lemma}[Exponent saturation]
+  \label{lem:exponent}
+  If~\textup{(B)} holds, then $\exp(H) = |H|/2$.
+\end{lemma}
+
+\begin{proof}
+  Under~(B), every $h \neq e$ has
+  $\ord(h) \mid |H|/2$, so $|H| \ge 4$.
+  Set $P = \exp(H) = \lcm\{\ord(h) : h \in H\}$.
+  Each mode $f(\pi/d, j) = \sin((2j{+}1)\pi/d)/\sin(\pi/d)$
+  has period~$d$ in~$j$, since
+  $(2(j{+}d){+}1)\pi/d = (2j{+}1)\pi/d + 2\pi$.
+  Because $P$ is divisible by every~$d$ that appears, the
+  non-central contribution
+  $N(j) = \sum_{g \neq \pm 1} \chi_j(g)$
+  satisfies $N(j{+}P) = N(j)$.
+  The central contribution to $m(A_0, j)$ is
+  $C(j) = 2(2j{+}1)$, so $C(j{+}P) - C(j) = 4P$.
+  The full difference is
+  \[
+    m(A_0,\, j{+}P) - m(A_0,\, j)
+    = \frac{4P}{2|H|}
+    = \frac{2P}{|H|}.
+  \]
+  Write $|H|/2 = kP$ with $k \in \ZZ_{\ge 1}$
+  (possible since $P \mid |H|/2$ from~(B$_2$)).
+  Then $m(A_0, j{+}P) - m(A_0, j) = 1/k$ for all
+  integer~$j \ge 0$.
+  Since $|\chi_j(g)| = |\sin((2j{+}1)\alpha_g)/\sin\alpha_g|
+  \le 1/|\sin\alpha_g|$ for each $g \neq \pm 1$
+  (with $\alpha_g$ the half-angle, fixed and nonzero),
+  the non-central sum is bounded independently of~$j$.
+  Hence $m(A_0, j) \ge (2(2j{+}1) - C_0)/|2H|$ for
+  a constant~$C_0$, and $m(A_0, j) \to \infty$.
+  The telescoping sum
+  $m(A_0, nP) = m(A_0, 0) + n/k$ must be a
+  non-negative integer for all~$n \ge 0$, forcing
+  $1/k \in \ZZ_{>0}$.
+  Since $k \ge 1$, the only possibility is $k = 1$,
+  giving $P = |H|/2$.
+\end{proof}
+
+\noindent
+Equivalently, (B) holds if and only if $\exp(H) = |H|/2$.
+The threshold $j^* = P - 1 = |H|/2 - 1$ is thus uniquely
+determined by~(B); no smaller threshold supports reflection.
+
+\subsection{The spectral reflection theorem}
+\label{sec:duality-theorem}
+
+We now prove Theorem~\ref{thm:main} from the introduction.
+
+\begin{theorem}[Spectral reflection]
+  \label{thm:duality}
+  For $H \subset \SO(3)$ finite with $|H|$ even, the
+  following are equivalent:
+  \begin{enumerate}
+    \item[\textup{(B)}] The divisibility condition holds.
+    \item[\textup{(C)}] For every scalar character~$\chi$
+      and every $j$ in $[0, j^*]$ of the parity matching
+      $\chi$
+      \textup{(}integer if tensorial, half-integer if
+      spinorial\textup{)}:
+      \begin{equation}
+        \label{eq:duality}
+        m(\chi, j) + m(\chi, j^* - j) = 1.
+      \end{equation}
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \textup{(B) $\Rightarrow$ (C).}
+  By Lemma~\ref{lem:antisymmetry}, every non-central
+  mode satisfies
+  $f(\alpha, j) + f(\alpha, j^*{-}j) = 0$.
+  Since the $\overline{\chi}$-weights
+  in~\eqref{eq:mode-decomposition} are constants
+  for each class, the entire non-central contribution
+  to $m(\chi, j) + m(\chi, j^*{-}j)$ vanishes.
+  The two central elements contribute
+  \begin{align*}
+    \frac{1}{|2H|}\Bigl[
+      &\bigl((2j{+}1) + (2(j^*{-}j){+}1)\bigr) \\
+      +\;\chi(-1)\bigl(
+        &(-1)^{2j}(2j{+}1)
+        + (-1)^{2(j^*-j)}(2(j^*{-}j){+}1)
+      \bigr)
+    \Bigr].
+  \end{align*}
+  The first line equals $|H|$ by definition of~$j^*$.
+  For the second line:
+  $(-1)^{2(j^*-j)} = (-1)^{|H|-2-2j}
+  = (-1)^{|H|}(-1)^{2j}$,
+  and since $|H|$ is even, $(-1)^{|H|} = 1$.
+  The second line becomes
+  $\chi(-1)\,(-1)^{2j}\,|H|$.
+  The full central contribution is
+  \begin{equation}
+    \label{eq:central}
+    \frac{1}{2}
+    \bigl[1 + \chi(-1)\,(-1)^{2j}\bigr],
+  \end{equation}
+  which equals~$1$ when $\chi(-1) = (-1)^{2j}$
+  (matching parity) and~$0$ otherwise.
+
+  \medskip
+  \textup{(C) $\Rightarrow$ (B).}
+  Contrapositive.
+  Suppose (B) fails: there exists $h \in H \setminus \{e\}$
+  with $K = |H|/\mathrm{ord}(h)$ odd.
+  For a non-central element $g \in 2H$ projecting to~$h$
+  of $\SO(3)$ order~$d$,
+  \begin{equation}
+    \label{eq:chi-jstar}
+    \chi_{j^*}(g)
+    = \frac{\sin\bigl((|H|{-}1)\pi/d\bigr)}
+           {\sin(\pi/d)}\,.
+  \end{equation}
+  Since $d \mid |H|$, write $(|H|{-}1)/d = K - 1/d$.
+  Then $(|H|{-}1)\pi/d = K\pi - \pi/d$, so
+  $\sin((|H|{-}1)\pi/d) = (-1)^{K+1}\sin(\pi/d)$,
+  giving $\chi_{j^*}(g) = (-1)^{K+1} = +1$ when $K$ is odd.
+
+  Now compute $m(A_0, j^*)$ from~\eqref{eq:multiplicity}.
+  Each non-identity $h \in H$ lifts to a pair
+  $g_h, -g_h$ in~$2H$.
+  Since $j^*$ is an integer,
+  $\chi_{j^*}(-g_h) = \chi_{j^*}(g_h)$, and the pair
+  contributes $2\chi_{j^*}(g_h)$: this is $+2$ when
+  $|H|/\mathrm{ord}(h)$ is odd, and $-2$ when even.
+  Let $S_{\mathrm{odd}} = \{h \in H\setminus\{e\} : |H|/\mathrm{ord}(h)
+  \text{ is odd}\}$.
+  The central elements contribute
+  $2(2j^*{+}1) = 2(|H|{-}1)$.
+  Writing $S_{\mathrm{even}} = (H\setminus\{e\})
+  \setminus S_{\mathrm{odd}}$:
+  \[
+    |2H|\,m(A_0, j^*)
+    = 2(|H|{-}1)
+    + 2|S_{\mathrm{odd}}|
+    - 2|S_{\mathrm{even}}|.
+  \]
+  Since $|S_{\mathrm{odd}}| + |S_{\mathrm{even}}| = |H|{-}1$,
+  this gives
+  \begin{equation}
+    \label{eq:m-jstar}
+    m(A_0, j^*)
+    = \frac{2}{|H|}
+      |S_{\mathrm{odd}}|.
+  \end{equation}
+  Since $m(A_0,j^*) \in \ZZ_{\ge 0}$,
+  $|S_{\mathrm{odd}}|$ is a non-negative multiple
+  of~$|H|/2$.
+  Since $|S_{\mathrm{odd}}| \le |H|{-}1$, the only
+  possibilities are $0$ and~$|H|/2$.
+  Since (B) fails, $S_{\mathrm{odd}} \neq \emptyset$,
+  so $|S_{\mathrm{odd}}| = |H|/2$ and
+  $m(A_0, j^*) = 1$.
+  Combined with $m(A_0, 0) = 1$:
+  $m(A_0, 0) + m(A_0, j^*) = 2 \neq 1$.
+\end{proof}
+
+\subsection{Consequences}
+\label{sec:consequences}
+
+\begin{corollary}[Binary occupation]
+  \label{cor:binary}
+  Under~\textup{(B)}, $m(\chi, j) \in \{0,1\}$ for every
+  scalar~$\chi$ and every $j \le j^*$ of matching parity.
+\end{corollary}
+
+\begin{proof}
+  From $m(\chi,j) + m(\chi,j^*{-}j) = 1$ with both terms
+  non-negative integers, each is $0$ or~$1$.
+\end{proof}
+
+\begin{corollary}[Regular-representation tiling]
+  \label{cor:reg-rep}
+  Under~\textup{(B)}, for every integer $j \in [0,\, j^*]$:
+  \begin{equation}
+    \label{eq:reg-rep-tiling}
+    \mathrm{Res}\,(V_j \oplus V_{j^*-j})\big|_{2H}
+    \cong \rho_{\mathrm{reg}}(H),
+  \end{equation}
+  where $\rho_{\mathrm{reg}}(H) = \bigoplus_{\rho} (\dim\rho)\,\rho$
+  is the regular representation of~$H$.
+\end{corollary}
+
+\begin{proof}
+  For any irreducible representation~$\rho$ of~$2H$
+  of matching parity ($\rho(-1) = I$ at integer~$j$,
+  $\rho(-1) = -I$ at half-integer~$j$), the
+  multiplicity $m(\rho,j) = \frac{1}{|2H|}
+  \sum_g \overline{\chi_\rho(g)}\,\chi_j(g)$
+  satisfies the same paired cancellation:
+  Lemma~\ref{lem:antisymmetry} kills the non-central
+  terms (it depends only on the half-angle, not on
+  the character weighting), and the central contribution
+  gives
+  $\frac{1}{|2H|}[\dim\rho \cdot |H|
+  + \chi_\rho(-1)\,(-1)^{2j}\,\dim\rho \cdot |H|]
+  = \dim\rho$
+  when the parity matches.
+  Hence
+  \[
+    m(\rho, j) + m(\rho, j^*{-}j) = \dim\rho.
+  \]
+  At integer~$j$, only representations with
+  $\rho(-1) = I$ contribute; these are precisely the
+  irreps of~$2H$ that factor through $H = 2H/\{\pm 1\}$.
+  Summing $(\dim\rho)\,\rho$ over matching-parity irreps
+  gives $\rho_{\mathrm{reg}}(H)$.
+\end{proof}
+
+\begin{corollary}[Periodic staircase]
+  \label{cor:staircase}
+  Under~\textup{(B)}, for every scalar~$\chi$ and
+  every $j \ge 0$ of matching parity:
+  \begin{equation}
+    \label{eq:staircase}
+    m(\chi,\, j + P) = m(\chi,\, j) + 1,
+  \end{equation}
+  where $P = |H|/2 = j^* + 1$.
+\end{corollary}
+
+\begin{proof}
+  By Lemma~\ref{lem:exponent}, every non-central mode
+  $f(\alpha, j)$ has period dividing $P$ in~$j$.
+  Hence the non-central sum in~\eqref{eq:mode-decomposition}
+  satisfies $N(j{+}P) = N(j)$.
+  The central contribution grows by
+  $2(2P)/|2H| = 2P/|H| = 1$ per period,
+  giving~\eqref{eq:staircase}.
+  The identity holds for all $j \ge 0$, including above threshold.
+\end{proof}
+
+\begin{corollary}[Threshold sharpness]
+  \label{cor:threshold}
+  Under~\textup{(B)}, for every scalar~$\chi$ of
+  matching parity:
+  \begin{equation}
+    \label{eq:threshold-sharp}
+    m(\chi,\, j^*{+}1) = m(\chi, 0) + 1.
+  \end{equation}
+  In particular, $m(A_0,\, j^*{+}1) = 2$.
+\end{corollary}
+
+\begin{proof}
+  Set $j = 0$ in~\eqref{eq:staircase}:
+  $m(\chi, P) = m(\chi, 0) + 1$.
+  Since $P = j^*{+}1$, the result follows.
+  For $A_0$: $m(A_0, 0) = 1$, so
+  $m(A_0, j^*{+}1) = 2$.
+  For characters with $m(\chi, 0) = 0$
+  (e.g., $A_1$ in~$O$),
+  $m(\chi, j^*{+}1) = 1$: the level appears
+  for the first time above threshold.
+\end{proof}
+
+\begin{remark}[Periodic decomposition]
+  \label{rem:periodic}
+  Corollaries~\ref{cor:staircase}
+  and~\ref{cor:binary} together yield a
+  decomposition
+  $m(\chi, j) = \lfloor j/P \rfloor + \varepsilon(\chi, j)$,
+  where $\varepsilon(\chi, \cdot)$ is periodic with
+  period~$P$, takes values in~$\{0,1\}$, and satisfies
+  $\varepsilon(\chi, j) + \varepsilon(\chi, P{-}1{-}j) = 1$
+  (the reflection identity restricted to the first period).
+  This reformulates the spectral structure as a linear
+  drift with a periodic binary residual.
+\end{remark}
+
+% ============================================================
+\section{Topological obstruction and symmetry breaking}
+\label{sec:obstruction}
+% ============================================================
+
+\subsection{The octahedral rotor}
+\label{sec:octahedral}
+
+For $H = O$ (order~$24$), the binary cover
+$2O$ has order~$48$, abelianization~$\ZZ_2$,
+and two scalar sectors: the trivial character~$A_0$
+and the sign character~$A_1$ (both tensorial).
+The threshold is $j^* = 11$.
+
+Table~\ref{tab:octahedral} displays the scalar
+multiplicities at all sub-threshold levels.
+The reflection $m(\chi, j) + m(\chi, 11{-}j) = 1$
+holds in every row.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}ccccc@{}}
+  \toprule
+  $j$ & $m(A_0, j)$ & $m(A_1, j)$
+    & $m(A_0, 11{-}j)$ & $m(A_1, 11{-}j)$ \\
+  \midrule
+  $0$  & $1$ & $0$ & $0$ & $1$ \\
+  $1$  & $0$ & $0$ & $1$ & $1$ \\
+  $2$  & $0$ & $0$ & $1$ & $1$ \\
+  $3$  & $0$ & $1$ & $1$ & $0$ \\
+  $4$  & $1$ & $0$ & $0$ & $1$ \\
+  $5$  & $0$ & $0$ & $1$ & $1$ \\
+  $6$  & $1$ & $1$ & $0$ & $0$ \\
+  $7$  & $0$ & $1$ & $1$ & $0$ \\
+  $8$  & $1$ & $0$ & $0$ & $1$ \\
+  $9$  & $1$ & $1$ & $0$ & $0$ \\
+  $10$ & $1$ & $1$ & $0$ & $0$ \\
+  $11$ & $0$ & $1$ & $1$ & $0$ \\
+  \bottomrule
+\end{tabular}
+\caption{Scalar multiplicities for $H = O$,
+  $j^* = 11$.
+  Both characters are tensorial (integer~$j$ only).
+  The reflection $m(\chi, j) + m(\chi, 11{-}j) = 1$
+  holds in every row.}
+\label{tab:octahedral}
+\end{table}
+
+\noindent
+For $A_0$, the
+mode decomposition~\eqref{eq:mode-decomposition}
+has three non-central modes:
+\begin{equation}
+  \label{eq:collapsed-O}
+  S_O(j)
+  = 12\,f(\tfrac{\pi}{4}, j)
+  + 16\,f(\tfrac{\pi}{3}, j)
+  + 18\,f(\tfrac{\pi}{2}, j),
+\end{equation}
+corresponding to $\SO(3)$~orders
+$d = 4, 3, 2$ with $K = |O|/d = 6, 8, 12$---all even,
+confirming~(B).
+
+\subsection{The topological obstruction}
+\label{sec:topological}
+
+Both octahedral sectors are tensorial---this is forced
+by a topological obstruction.
+Under a $2\pi$ rotation, a wave function in sector~$\chi$
+acquires the phase $\chi(-1)$.
+If $-1$ lies in the commutator subgroup
+$[G,G]$ of $G = 2H$, then $\chi(-1) = 1$ for every
+one-dimensional character: no spinorial sector exists.
+\begin{equation}
+  \label{eq:obstruction-A}
+  \textup{(A)}\qquad -1 \in [G,G].
+\end{equation}
+
+\begin{proposition}[Topological link]
+  \label{prop:A-iff-B}
+  For $G = 2H \subset \SU(2)$, condition~\textup{(A)}
+  is equivalent to the divisibility
+  condition~\textup{(B)}.
+\end{proposition}
+
+\begin{proof}
+  \emph{(A)$\,\Rightarrow\,$(B).}\;
+  If $[a,b] = -1$ for some $a,b\in 2H$,
+  then $ab = -ba$.
+  Since $a^2$ commutes with~$b$ and lies in
+  $\{\pm 1\}$, with $a^2 = +1$ giving $[a,b] = 1$,
+  we have $a^2 = b^2 = -1$.
+  Hence $a,b$ are pure imaginary unit quaternions and
+  $\{\pm 1,\pm a,\pm b,\pm ab\}\cong Q_8\subset 2H$.
+  Projecting gives $V_4\subset H$, so the
+  Sylow 2-subgroup~$S$ of~$H$ is non-cyclic.
+  Since $S$ is a finite 2-subgroup of $\SO(3)$, the
+  Burnside orbit-counting equation on~$S^2$
+  forces $S \cong D_{2^{a-1}}$
+  (dihedral of order~$2^a$), with exponent~$2^{a-1}$.
+  For any $h \in H$, writing $\ord(h) = 2^b m'$ ($m'$ odd),
+  the element $h^{m'}$ has 2-power order~$2^b$ and lies
+  in a Sylow 2-subgroup, so $b \le a{-}1$.
+  Thus $\nu_2(\ord h) < \nu_2(|H|)$ for all
+  $h\neq e$, which is~(B${}_3$).
+
+  \emph{(B)$\,\Rightarrow\,$(A).}\;
+  Write $|H|=2^a m$ ($m$ odd, $a\ge 1$).
+  \emph{Step~1:} If the Sylow 2-subgroup~$S$ were cyclic,
+  it would contain an element of order~$2^a$,
+  violating~(B${}_3$).  So $S$ is non-cyclic,
+  with $|S|\ge 4$ since $\exp(H) = |H|/2$ forces $|H| \ge 4$.
+  \emph{Step~2:} The generalised quaternion group
+  $Q_{2^n}$ ($n\ge 3$) admits no faithful homomorphism
+  to~$\SO(3)$: its presentation forces
+  $\varphi(a)$ and $\varphi(b)$ to share a rotation axis
+  (both $\varphi(b)^2$ and $\varphi(a^{2^{n-2}})$
+  are the same $\pi$-rotation), but $bab^{-1}=a^{-1}$
+  with $\ord(a)\ge 4$ requires non-commutativity,
+  a contradiction.
+  \emph{Step~3:} By Burnside's theorem~\cite{Gorenstein1980},
+  a finite 2-group of order~$\ge 4$ that is
+  neither cyclic nor generalised quaternion contains
+  $V_4 = \ZZ_2\times\ZZ_2$.
+  \emph{Step~4:} The three non-identity elements of
+  $V_4\subset H$ are $\pi$-rotations with mutually
+  perpendicular axes; their $\SU(2)$ lifts are pure
+  imaginary and pairwise anticommute, generating
+  $Q_8\subset 2H$.
+  Then $[a,b]=-1$, giving~(A).
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lcccc@{}}
+  \toprule
+  $H \subset \SO(3)$ & (B)? & $-1 \in [2H,2H]$?
+    & $2\pi$ holonomy & spinorial? \\
+  \midrule
+  $C_n$ & No & No & $-1$ allowed & Yes \\
+  $D_n$ ($n$ odd) & No & No & $-1$ allowed & Yes \\
+  $D_n$ ($n$ even) & Yes & Yes & $+1$ forced & No \\
+  $T,O,I$ & Yes & Yes & $+1$ forced & No \\
+  \bottomrule
+\end{tabular}
+\caption{Obstruction and divisibility for all finite
+  $H \subset \SO(3)$.
+  When (B) holds, every scalar sector has $\chi(-1) = +1$.
+  Even dihedral groups satisfy~(B) with
+  abelianization $\ZZ_2 \times \ZZ_2$
+  (four tensorial scalar sectors).}
+\label{tab:obstruction-summary}
+\end{table}
+
+\subsection{Symmetry breaking: re-entrance and classification}
+\label{sec:reentrance}
+
+When the rotation group is lowered from $H$ to a subgroup
+$K \subset H$, two spectral effects occur:
+(1)~\emph{densification}: levels forbidden by $H$-symmetry
+become allowed under~$K$, and the spectral gap decreases;
+(2)~\emph{re-entrance}: spinorial sectors may reappear.
+The mechanism is arithmetic: re-entrance is controlled by
+whether the subgroup chain eliminates~$Q_8$.
+
+\medskip
+\begin{center}
+\begin{tabular}{@{}lcc@{}}
+  \toprule
+  & Trigonal ($O \to D_3$) & Tetragonal ($O \to D_4$) \\
+  \midrule
+  $Q_8 \subset 2K$?     & No         & Yes        \\
+  1D characters           & $2 \to 4$  & $2 \to 4$  \\
+  \quad of which spinorial & $0 \to 2$ (new) & $0 \to 0$ \\
+  Smallest tensorial gap  & $2B$ ($\chi_2$, $j{=}1$)
+                          & $6B$ ($A_0$, $j{=}2$) \\
+  Spinorial ground state  & $j{=}3/2$, $\Delta{=}3.75B$ & --- \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent
+We develop the trigonal case.
+The group $2D_3 = \mathrm{Dic}_3 \subset \SU(2)$ has
+order~$12$, with abelianization~$\ZZ_4$.
+Its four one-dimensional characters are:
+$\chi_0$~(T): trivial; $\chi_2$~(T): sign of~$D_3$
+($\chi_2(-1) = +1$); $\chi_1$~(S), $\chi_3$~(S): spinorial
+($\chi(-1) = -1$).
+The character table, with classes labelled by
+half-angle~$\alpha$:
+
+\begin{center}
+\begin{tabular}{@{}lcccccc@{}}
+  \toprule
+  class
+    & $\{1\}$ & $\{a,a^5\}$ & $\{a^2,a^4\}$
+    & $\{-1\}$ & $\{b,a^2b,a^4b\}$ & $\{ab,a^3b,a^5b\}$ \\
+  size & $1$ & $2$ & $2$ & $1$ & $3$ & $3$ \\
+  $\alpha$ & $0$ & $\pi/3$ & $2\pi/3$ & $\pi$
+    & $\pi/2$ & $\pi/2$ \\
+  \midrule
+  $\chi_0$ & $1$ & $1$  & $1$  & $1$  & $1$  & $1$  \\
+  $\chi_1$ & $1$ & $-1$ & $1$  & $-1$ & $i$  & $-i$ \\
+  $\chi_2$ & $1$ & $1$  & $1$  & $1$  & $-1$ & $-1$ \\
+  $\chi_3$ & $1$ & $-1$ & $1$  & $-1$ & $-i$ & $i$  \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+The multiplicity table:
+
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+  \toprule
+  $j$ & $\chi_0$ (T) & $\chi_1$ (S) & $\chi_2$ (T) & $\chi_3$ (S) \\
+  \midrule
+  $0$   & $1$ & ---  & $0$ & ---  \\
+  $1/2$ & --- & $0$  & --- & $0$  \\
+  $1$   & $0$ & ---  & $1$ & ---  \\
+  $3/2$ & --- & $1$  & --- & $1$  \\
+  $2$   & $1$ & ---  & $0$ & ---  \\
+  $5/2$ & --- & $1$  & --- & $1$  \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+The tensorial reflection fails:
+$m(\chi_0, 0) + m(\chi_0, 2) = 1 + 1 = 2 \neq 1$.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}cccccc@{}}
+  \toprule
+  Sector & Type & Symmetry & Ancestor & $j_1$ & $\Delta/B$ \\
+  \midrule
+  $A_0$ & T & $O$   & ---       & $4$   & $20$ \\
+  $A_1$ & T & $O$   & ---       & $3$   & $12$ \\
+  \midrule
+  $\chi_0$ & T & $D_3$ & $A_0$  & $2$   & $6$ \\
+  $\chi_2$ & T & $D_3$ & $A_1$  & $1$   & $2$ \\
+  $\chi_1$ & S & $D_3$ & none   & $3/2$ & $3.75$ \\
+  $\chi_3$ & S & $D_3$ & none   & $3/2$ & $3.75$ \\
+  \bottomrule
+\end{tabular}
+\caption{Spectral structure before and after $O \to D_3$.
+  (T)~tensorial, (S)~spinorial.
+  Top: $\SO(3)/O$ (obstruction active).
+  Bottom: $\SO(3)/D_3$ (obstruction lifts, spinorial sectors
+  appear with no ancestor in~$O$).}
+\label{tab:densification}
+\end{table}
+
+The trigonal and tetragonal examples are instances of a general
+principle.
+
+\begin{proposition}[Lifting criterion]
+  \label{prop:lifting}
+  Let $H \subset \SO(3)$ satisfy~\textup{(B)}, and let
+  $K \subset H$ be a subgroup.
+  Spinorial scalar sectors exist on $\SO(3)/K$ if and only
+  if $Q_8 \not\subset 2K$.
+\end{proposition}
+
+\begin{proof}
+  A spinorial character of~$2K$ exists iff
+  $-1 \notin [2K, 2K]$, which by
+  Proposition~\ref{prop:A-iff-B} (applied to~$K$)
+  is equivalent to $Q_8 \not\subset 2K$.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lcccc@{}}
+  \toprule
+  Channel & $|2K|$ & $Q_8 \subset 2K$?
+    & spinorial? & mechanism \\
+  \midrule
+  $O$ (parent) & $48$ & Yes & No & $Q_8 \subset 2O$ \\
+  $O \to T$    & $24$ & Yes & No & $Q_8 \subset 2T$ \\
+  $O \to D_4$  & $16$ & Yes & No & $Q_8 \subset 2D_4$ \\
+  $O \to D_2$  & $8$  & Yes & No & $Q_8 = 2D_2$ \\
+  \midrule
+  $O \to D_3$  & $12$ & No  & Yes & Lagrange: $8 \nmid 12$ \\
+  $O \to C_4$  & $8$  & No  & Yes & $\ZZ_8$ abelian \\
+  $O \to C_3$  & $6$  & No  & Yes & Lagrange: $8 \nmid 6$ \\
+  $O \to C_2$  & $4$  & No  & Yes & $\ZZ_4$ abelian \\
+  \bottomrule
+\end{tabular}
+\caption{Symmetry-breaking phase diagram for the octahedral
+  rotor.
+  Above the midrule: obstruction persists ($Q_8 \subset 2K$).
+  Below: obstruction lifts, spinorial sectors reappear.}
+\label{tab:lifting}
+\end{table}
+
+\noindent
+The criterion is monotone: once $Q_8$ is lost in a subgroup
+chain $H \supset K \supset K'$, it cannot reappear.
+This completes the classification: for every finite
+$H \subset \SO(3)$ and every subgroup $K \subset H$,
+the spectral structure on $\SO(3)/K$ is determined
+by Theorem~\ref{thm:duality} when~(B) holds for~$K$,
+and by the explicit failure mode when~(B) fails.
+
+\subsection{Spinorial gap}
+\label{sec:spinorial-gap}
+
+Proposition~\ref{prop:lifting} characterises \emph{when}
+spinorial sectors exist.
+We now determine \emph{where} they first appear.
+
+\begin{proposition}[Spinorial gap]
+  \label{prop:spinorial-gap}
+  Let $K \subset \SO(3)$ with $Q_8 \not\subset 2K$.
+  \begin{enumerate}
+  \item If $K \cong C_n$, the lowest spinorial level is
+    $j = \tfrac{1}{2}$, with gap
+    $\Delta_{\mathrm{spin}} = \tfrac{3}{4}\,B$.
+  \item If $K \cong D_n$ with $n$ odd, the lowest spinorial
+    level is $j_{\min}^{\mathrm{spin}} = n/2$, with gap
+    \[
+      \Delta_{\mathrm{spin}}
+      = B\,\frac{n}{2}\Bigl(\frac{n}{2}+1\Bigr)
+      = \frac{n(n+2)}{4}\,B.
+    \]
+  \end{enumerate}
+  The spinorial gap grows quadratically
+  in~$n$ for dihedral subgroups.
+\end{proposition}
+
+\begin{proof}
+  For $C_n$: $V_{1/2}|_{\ZZ_{2n}}$ contains the character
+  $\chi_1$ with $\chi_1(-1) = -1$, so $m(\chi_1, \tfrac{1}{2}) \geq 1$.
+
+  For $D_n$ ($n$ odd): $2D_n \cong \mathrm{Dic}_n$.
+  Every spinorial character restricts to $\chi_n$ on the
+  cyclic subgroup $\ZZ_{2n} = \langle a \rangle$.
+  The weights of $V_j|_{\ZZ_{2n}}$ are
+  $\{2m \bmod 2n : m = -j, \ldots, j\}$.
+  The character~$\chi_n$ appears iff $2m \equiv n \pmod{2n}$,
+  i.e.\ $m = n/2$, which requires $j \geq n/2$.
+  At $j = n/2$ the weight is realised.
+\end{proof}
+
+\begin{remark}
+  The $D_3$ case ($j_{\min}^{\mathrm{spin}} = 3/2$,
+  $\Delta = 3.75B$) is the lowest dihedral instance.
+  For $D_5$: $\Delta = 8.75B$; for $D_7$: $\Delta = 15.75B$.
+  Existence of spinorial sectors does not imply
+  low-energy spinorial excitations.
+\end{remark}
+
+\subsection{Sector-selective duality}
+\label{sec:sector-selective}
+
+Although Theorem~\ref{thm:duality} fails globally for $D_n$
+with $n$ odd, the reflection persists in the spinorial sector.
+The failure of~(B) is carried entirely by half-turn classes
+($d = 2$), which are spectrally invisible at half-integer~$j$.
+
+\begin{lemma}[Spectral invisibility]
+  \label{lem:invisibility}
+  A conjugacy class of $\SO(3)$ order~$d$ makes zero contribution
+  to the multiplicity formula~\eqref{eq:multiplicity}
+  at every $j$ with $d \mid 2j{+}1$.
+  In particular, half-turn classes ($d = 2$) are invisible
+  at all half-integer~$j$.
+\end{lemma}
+
+\begin{proof}
+  The mode function $f(\pi/d, j) = \sin((2j{+}1)\pi/d)/\sin(\pi/d)$
+  vanishes whenever $d \mid 2j{+}1$.
+  For $d = 2$: at half-integer~$j$, $2j{+}1$ is even,
+  so $\sin((2j{+}1)\pi/2) = 0$.
+\end{proof}
+
+\begin{proposition}[Sector-selective duality]
+  \label{prop:sector-selective}
+  Let $H = D_n$ with $n$ odd.
+  Then condition~\textup{(B)} fails, but the spectral
+  reflection holds for all spinorial characters:
+  $m(\chi,j) + m(\chi,j^*{-}j) = 1$ for every spinorial
+  $\chi$ and every half-integer $j \in [\tfrac{1}{2},\,
+  j^*{-}\tfrac{1}{2}]$.
+  The reflection fails for tensorial characters.
+\end{proposition}
+
+\begin{proof}
+  The only classes violating~(B) in $D_n$ ($n$ odd) are
+  the half-turns ($d = 2$, $|H|/d = n$ odd).
+  By Lemma~\ref{lem:invisibility}, these are invisible at
+  half-integer~$j$.
+  The remaining non-central classes satisfy $|H|/d$ even, so
+  Lemma~\ref{lem:antisymmetry} applies class-by-class
+  and their contributions cancel in the paired sum.
+  The central contribution equals~$1$ for spinorial
+  $\chi$ at half-integer~$j$, since
+  $\chi(-1)\,(-1)^{2j} = (-1)(-1) = 1$.
+
+  For tensorial characters ($\chi(-1) = 1$, integer~$j$),
+  the half-turn classes are \emph{not} invisible:
+  $f(\pi/2, j) = (-1)^j \neq 0$.
+  Since $K = n$ is odd,
+  $f(\pi/2,\, j^*{-}j) = +f(\pi/2, j)$
+  (the contribution doubles rather than cancels),
+  and the reflection sum becomes~$0$ or~$2$.
+\end{proof}
+
+\begin{remark}[Generalized selective duality]
+  \label{rem:generalized-selective}
+The proof uses only mode antisymmetry
+(Lemma~\ref{lem:antisymmetry}) for classes satisfying~(B),
+and spectral invisibility (Lemma~\ref{lem:invisibility})
+for the remaining classes.
+A scalar character~$\chi$ satisfies the reflection
+whenever $\chi$ is immune to every (B)-violating class---that is,
+whenever $f(\alpha_\beta, j) = 0$ for all~$j$ in the
+support of~$\chi$ and every class~$\beta$ with
+$|H|/\ord(\beta)$ odd.
+Among finite subgroups of $\SO(3)$ with $|H|$ even
+and~(B) failing, $D_n$ with $n$ odd is the only family
+whose violating classes consist entirely of half-turns;
+for $C_n$ with $n$ even, the violating elements include
+rotations of order $n > 2$, which are not spectrally
+invisible, and no selective duality occurs.
+\end{remark}
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+% ============================================================
+
+Theorem~\ref{thm:duality} and Proposition~\ref{prop:A-iff-B}
+together determine the sub-threshold spectral structure
+for all finite $H \subset \SO(3)$ with $|H|$ even.
+The partition is threefold:
+\begin{enumerate}
+\item[(i)] When~(B) holds ($D_n$ with $n$ even, $T$, $O$, $I$):
+  the reflection identity, binary occupation, periodic
+  staircase, and regular-representation tiling all hold;
+  every scalar sector is tensorial.
+\item[(ii)] When~(B) fails with $|H|$ even ($D_n$ with
+  $n$ odd): the reflection fails for tensorial characters
+  but persists in spinorial sectors by selective duality
+  (Proposition~\ref{prop:sector-selective}).
+\item[(iii)] When $|H|$ is odd ($C_n$ with $n$ odd):
+  $j^*$ is not an integer and no reflection structure exists.
+\end{enumerate}
+
+\emph{Invariant-theory interpretation.}
+The multiplicities $m(A_0, j)$ are the
+coefficients of the Molien series
+$M(t) = |2H|^{-1} \sum_{g \in 2H} \det(I - tg)^{-1}$
+of the invariant ring $\CC[x,y]^{2H}$, evaluated at
+degree~$2j$ (since $V_j = \Sym^{2j}(\CC^2)$).
+For $2H \subset \SL(2,\CC)$,
+$\CC[x,y]^{2H}$ is Gorenstein~\cite{Watanabe1974},
+so $M(t)$ takes the rational form
+$(1 + t^s)/\bigl((1-t^{d_1})(1-t^{d_2})\bigr)$
+with palindromic numerator,
+where $d_1, d_2$ are the degrees of a homogeneous system
+of parameters and $s = d_1 + d_2 - 2$:
+explicitly, $(d_1,d_2,s) = (6,8,12)$ for~$T$,
+$(8,12,18)$ for~$O$, and $(12,20,30)$ for~$I$.
+The palindromic rational form implies a functional symmetry
+of~$M(t)$; combined with the fact that $m(A_0, j) \in \{0,1\}$
+below degree~$|H| - 2$ (which itself follows from the
+mode-antisymmetry argument), reflection for~$A_0$ follows.
+The full identity for all scalar~$\chi$---and the equivalence
+(B)$\,\Leftrightarrow\,$(C)---requires
+Theorem~\ref{thm:duality}.
+
+\emph{Physical context.}
+For a rigid molecular rotor, nuclear spins transform
+under~$H$, not its double cover~$2H$, so spinorial
+sectors carry zero nuclear-spin statistical weight
+$g_\chi = 0$~\cite{BunkerJensen2006}.
+These sectors are quantum-mechanically allowed but
+thermally dark in standard molecular spectroscopy.
+The tensorial sectors, however, directly carry the
+reflection signature: the binary occupation pattern
+$m(\chi,j) \in \{0,1\}$ and the complementarity
+$m(\chi,j) + m(\chi,j^*{-}j) = 1$ constrain which
+rotational lines appear in each sector.
+In engineered systems without nuclear-spin degrees of
+freedom---such as atoms in optical lattices with
+point-group potentials---all sectors are populated
+and the full spectral structure is observable.
+
+\emph{Scope and limitations.}
+The mechanism relies on the linear dimension formula
+$\dim V_j = 2j{+}1$; for groups of higher rank,
+$\dim V_\lambda$ grows polynomially and the arithmetic
+underpinning the reflection breaks down.
+For $\SU(3)$, $\dim V_{(p,q)} = \tfrac{1}{2}(p{+}1)(q{+}1)(p{+}q{+}2)$
+is quadratic; no affine involution on the weight lattice
+produces a constant paired sum, and finite subgroups such as
+$\Delta(27)$ exhibit no complementary pairing
+(verified computationally).
+A natural question is whether analogous results hold for
+spherical space forms $S^3/\Gamma$~\cite{Wolf2011}.
+The Laplacian on~$S^3$ decomposes under
+$\SO(4) \cong (\SU(2) \times \SU(2))/\ZZ_2$, and
+restriction to $\Gamma \subset \SU(2)$ acting on one factor
+involves two-sided representation theory~\cite{Ikeda1980}:
+eigenspaces are $V_\ell \otimes V_\ell$, so multiplicities
+involve $\dim\Hom_\Gamma(V_\ell, V_\ell)$ rather than the
+one-sided branching $\dim V_j^H$ used here.
+
+\emph{Structural content.}
+The arguments derive spectral structure directly from
+group order and element orders, without enumerating
+the polyhedral types.
+The triple equivalence reduces to:
+(B) holds $\Leftrightarrow$ the Sylow 2-subgroup
+of~$H$ is non-cyclic $\Leftrightarrow$
+$Q_8 \subset 2H$ $\Leftrightarrow$
+$-1 \in [2H, 2H]$.
+
+% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{Schulman1968}
+  L.~S.~Schulman,
+  ``A path integral for spin,''
+  Phys.\ Rev.\ \textbf{176}, 1558 (1968).
+
+\bibitem{Dowker1972}
+  J.~S.~Dowker,
+  ``Quantum mechanics and field theory on multiply connected
+  and on homogeneous spaces,''
+  J.\ Phys.\ A: Gen.\ Phys.\ \textbf{5}, 936 (1972).
+
+\bibitem{Isham1984}
+  C.~J.~Isham,
+  ``Topological and global aspects of quantum theory,''
+  in \emph{Relativity, Groups and Topology~II}
+  (Les~Houches, 1983),
+  ed.\ B.~S.~DeWitt and R.~Stora,
+  North-Holland (1984), pp.~1059--1290.
+
+\bibitem{LaidlawDeWitt1971}
+  M.~G.~G.~Laidlaw and C.~M.~DeWitt,
+  ``Feynman functional integrals for systems of
+  indistinguishable particles,''
+  Phys.\ Rev.\ D \textbf{3}, 1375 (1971).
+
+\bibitem{ImboSudarshan1988}
+  T.~D.~Imbo and E.~C.~G.~Sudarshan,
+  ``Inequivalent quantizations and fundamentally
+  perfect spaces,''
+  Phys.\ Rev.\ Lett.\ \textbf{60}, 481 (1988).
+
+\bibitem{Mermin1979}
+  N.~D.~Mermin,
+  ``The topological theory of defects in ordered media,''
+  Rev.\ Mod.\ Phys.\ \textbf{51}, 591 (1979).
+
+\bibitem{Giulini1995}
+  D.~Giulini,
+  ``On the selection rules for the configuration-space
+  topology in quantum mechanics,''
+  Helv.\ Phys.\ Acta \textbf{68}, 439 (1995).
+
+\bibitem{Mouchet2021}
+  A.~Mouchet,
+  ``Path integrals in a multiply-connected configuration
+  space (50 years after),''
+  Found.\ Phys.\ \textbf{51}, 97 (2021).
+
+\bibitem{Gorenstein1980}
+  D.~Gorenstein,
+  \emph{Finite Groups},
+  2nd ed., Chelsea (1980).
+
+\bibitem{BrockerTomDieck1985}
+  T.~Br\"ocker and T.~tom~Dieck,
+  \emph{Representations of Compact Lie Groups},
+  Graduate Texts in Mathematics \textbf{98},
+  Springer (1985).
+
+\bibitem{BunkerJensen2006}
+  P.~R.~Bunker and P.~Jensen,
+  \emph{Molecular Symmetry and Spectroscopy},
+  2nd ed., NRC Research Press (2006).
+
+\bibitem{FinkelsteinRubinstein1968}
+  D.~Finkelstein and J.~Rubinstein,
+  ``Connection between spin, statistics, and kinks,''
+  J.\ Math.\ Phys.\ \textbf{9}, 1762 (1968).
+
+\bibitem{Hecht1960}
+  K.~T.~Hecht,
+  ``The vibration-rotation energies of tetrahedral
+  XY$_4$ molecules: Part~I.\ Theory of spherical
+  top molecules,''
+  J.\ Mol.\ Spectrosc.\ \textbf{5}, 355 (1960).
+
+\bibitem{Wolf2011}
+  J.~A.~Wolf,
+  \emph{Spaces of Constant Curvature},
+  6th ed., AMS Chelsea (2011).
+
+\bibitem{BalachandranEtAl1983}
+  A.~P.~Balachandran, G.~Marmo, B.~S.~Skagerstam,
+  and A.~Stern,
+  ``Gauge symmetries and fibre bundles:
+  Applications to particle dynamics,''
+  Lecture Notes in Physics \textbf{188},
+  Springer (1983).
+
+\bibitem{Ikeda1980}
+  A.~Ikeda,
+  ``On the spectrum of a Riemannian manifold of positive
+  constant curvature. II,''
+  Osaka J.\ Math.\ \textbf{17}, 75 (1980).
+
+\bibitem{Watanabe1974}
+  K.~Watanabe,
+  ``Certain invariant subrings are Gorenstein.\ I,''
+  Osaka J.\ Math.\ \textbf{11}, 1--8 (1974).
+
+\bibitem{AltmannHerzig1994}
+  S.~L.~Altmann and P.~Herzig,
+  \emph{Point-Group Theory Tables},
+  2nd ed., Oxford University Press (1994).
+
+\bibitem{Zhilinskii2001}
+  B.~Zhilinski\'{\i},
+  ``Symmetry, invariants, and topology in molecular
+  models,''
+  Phys.\ Rep.\ \textbf{341}, 85--171 (2001).
+
+\end{thebibliography}
+
+\end{document}
