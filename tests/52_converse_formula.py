@@ -43,7 +43,7 @@ RAW OUTPUT (112 passed, 0.45s):
   TestObstructedPolyhedral::test_non_identity_count[T,O,I] 3 PASSED
 """
 import sys
-sys.path.insert(0, '/Users/alextoader/Sites/st_spinorial_obstruction')
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 
 import numpy as np
 import pytest

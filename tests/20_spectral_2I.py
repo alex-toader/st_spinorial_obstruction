@@ -96,7 +96,7 @@ The bigger the group, the sparser the scalar spectrum.
 Icosahedral symmetry produces the most "silent" quantum rotor.
 """
 import sys
-sys.path.insert(0, '/Users/alextoader/Sites/st_spinorial_obstruction')
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 
 import numpy as np
 from src.group import build_binary_icosahedral, compute_conjugacy_classes

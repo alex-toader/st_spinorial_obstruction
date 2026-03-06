@@ -54,7 +54,7 @@ RAW OUTPUT (197 passed, 1.46s):
   TestObstructionKappaConsistency::test_minus1_in_commutator[2T,2O,2I] 3 PASSED
 """
 import sys
-sys.path.insert(0, '/Users/alextoader/Sites/st_spinorial_obstruction')
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 
 import numpy as np
 import pytest

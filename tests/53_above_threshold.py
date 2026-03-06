@@ -75,7 +75,7 @@ RAW OUTPUT (266 passed, 0.42s):
   TestUniversalThresholdSharpness::test_m_jstar_plus_1_equals_2[2T,2O,2I] 3 PASSED
 """
 import sys
-sys.path.insert(0, '/Users/alextoader/Sites/st_spinorial_obstruction')
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 
 import numpy as np
 import pytest

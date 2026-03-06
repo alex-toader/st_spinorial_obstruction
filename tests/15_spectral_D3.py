@@ -144,7 +144,7 @@ SPECTRAL MANIFESTATION OF Q₈ OBSTRUCTION:
   decimating the spectrum to integer j only.
 """
 import sys
-sys.path.insert(0, '/Users/alextoader/Sites/st_spinorial_obstruction')
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 
 import numpy as np
 from src.group import compute_conjugacy_classes, compute_commutator_subgroup

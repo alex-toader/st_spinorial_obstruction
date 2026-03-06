@@ -51,7 +51,7 @@ H2 (lifting):
 """
 
 import sys
-sys.path.insert(0, '/Users/alextoader/Sites/st_spinorial_obstruction')
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 
 import math
 import numpy as np

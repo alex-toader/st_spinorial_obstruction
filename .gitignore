@@ -4,6 +4,7 @@ __pycache__/
 .venv/
 .DS_Store
 internal/
+CLAUDE.md
 *.aux
 *.log
 *.out

@@ -55,7 +55,7 @@ Total scalar states (j ≤ 6): 13
 Comparison: 2T(13 states) vs 2O(5 states) vs 2D₃(35 states)
 """
 import sys
-sys.path.insert(0, '/Users/alextoader/Sites/st_spinorial_obstruction')
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 
 import numpy as np
 from src.quaternion import qkey, qmul

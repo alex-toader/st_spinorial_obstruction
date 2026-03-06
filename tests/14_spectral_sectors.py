@@ -95,7 +95,7 @@ On SO(3)/O: scalar spinorial FORBIDDEN.
   To access j=1/2, MUST use vector bundle H₁.
 """
 import sys
-sys.path.insert(0, '/Users/alextoader/Sites/st_spinorial_obstruction')
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 
 import numpy as np
 from src.quaternion import qkey
