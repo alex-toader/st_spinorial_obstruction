@@ -45,7 +45,7 @@
 \title{Spectral reflection symmetry and periodic multiplicity structure\\
 for quantum rotors on $\SO(3)/H$}
 \author{Alexandru Toader\\
-Independent\\
+Independent researcher, Buz\u{a}u, Romania\\
 \texttt{toader\_alexandru@yahoo.com}}
 \date{}
 
@@ -64,6 +64,11 @@ for every scalar character~$\chi$
 if and only if a divisibility condition~(B) on element orders
 holds, and that~(B) is equivalent to the commutator
 obstruction $-1 \in [2H,2H]$.
+While the reflection for the trivial character follows from
+the Gorenstein property of the invariant ring
+$\CC[x,y]^{2H}$, the extension to all scalar characters
+requires a new argument and reveals the equivalence with a
+topological obstruction.
 Under~(B), the multiplicity function decomposes as a linear
 drift plus a periodic binary residual with period $P = |H|/2$,
 from which binary occupation, regular-representation tiling,
@@ -79,8 +84,22 @@ spinorial sectors.
 \label{sec:intro}
 % ============================================================
 
-A rigid quantum rotor whose orientational symmetry is that of a
-finite subgroup $H \subset \SO(3)$~\cite{BunkerJensen2006,Zhilinskii2001}
+The rotational spectrum of a rigid molecule is governed by
+the point-group symmetry of its equilibrium
+configuration~\cite{BunkerJensen2006,Zhilinskii2001,Koch2019}.
+Which angular momentum levels appear in a given
+nuclear-spin symmetry species, and with what multiplicity,
+determines the selection rules for rotational transitions
+and the partition function at low temperature.
+These questions have acquired renewed urgency with the
+experimental realisation of
+symmetry-protected rotational qubits in cold polyatomic
+molecules~\cite{Low2025}, where the spectral structure
+within each symmetry sector is directly observable.
+
+Mathematically, a rigid quantum rotor whose orientational
+symmetry is that of a
+finite subgroup $H \subset \SO(3)$
 lives on the configuration space $M = \SO(3)/H$.
 Because $M$ is multiply connected, with fundamental group
 $\pi_1(M) \cong 2H \subset \SU(2)$, quantization splits into
@@ -1136,6 +1155,23 @@ The full identity for all scalar~$\chi$---and the equivalence
 (B)$\,\Leftrightarrow\,$(C)---requires
 Theorem~\ref{thm:duality}.
 
+\emph{Relation to the McKay correspondence.}
+The binary polyhedral groups $2H \subset \SU(2)$
+are classified by the ADE Dynkin
+diagrams~\cite{McKay1980,Reid2002}.
+The McKay correspondence relates the representation
+theory of~$2H$ to the resolution of the quotient
+singularity $\CC^2/2H$.
+The Molien series that governs
+$m(A_0, j)$~\cite{Stanley1979} encodes the same data
+from the invariant-theory side.
+The spectral reflection (C) adds a complementary
+structural signature: it holds precisely for the
+groups whose representation ring has the McKay property,
+and the equivalence (A)$\,\Leftrightarrow\,$(C)
+shows that the spectral and topological characterisations
+of these groups coincide.
+
 \emph{Physical context.}
 For a rigid molecular rotor, nuclear spins transform
 under~$H$, not its double cover~$2H$, so spinorial
@@ -1150,8 +1186,15 @@ $m(\chi,j) + m(\chi,j^*{-}j) = 1$ constrain which
 rotational lines appear in each sector.
 In engineered systems without nuclear-spin degrees of
 freedom---such as atoms in optical lattices with
-point-group potentials---all sectors are populated
-and the full spectral structure is observable.
+point-group potentials~\cite{Koch2019}---all sectors
+are populated and the full spectral structure is
+observable.
+From the mathematical side, the superselection
+structure is an instance of the general framework
+for quantization on multiply connected configuration
+spaces~\cite{Landsman2016}; the present results
+supply the detailed spectral content within each
+sector for the specific case $M = \SO(3)/H$.
 
 \emph{Scope and limitations.}
 The mechanism relies on the linear dimension formula
@@ -1200,6 +1243,14 @@ symmetry-breaking phase diagrams, sector-selective duality for odd
 dihedral groups, and the Molien--Gorenstein connection.
 Negative results (SU(3), Spin(4), heat kernel) are also included.
 All numerical claims in this paper are backed by reproducible scripts.
+
+% ============================================================
+\section*{Data availability}
+% ============================================================
+
+The data that support the findings of this study are
+openly available in GitHub at
+\url{https://github.com/alex-toader/st_spinorial_obstruction}.
 
 % ============================================================
 \begin{thebibliography}{99}
@@ -1314,6 +1365,47 @@ All numerical claims in this paper are backed by reproducible scripts.
   ``Symmetry, invariants, and topology in molecular
   models,''
   Phys.\ Rep.\ \textbf{341}, 85--171 (2001).
+
+\bibitem{McKay1980}
+  J.~McKay,
+  ``Graphs, singularities, and finite groups,''
+  in \emph{The Santa Cruz Conference on Finite Groups}
+  (Univ.\ California, 1979),
+  Proc.\ Sympos.\ Pure Math.\ \textbf{37},
+  AMS, Providence, RI (1980), pp.~183--186.
+
+\bibitem{Reid2002}
+  M.~Reid,
+  ``La correspondance de McKay,''
+  S\'eminaire Bourbaki, expos\'e no.~867,
+  Ast\'erisque \textbf{276}, 53--72 (2002);
+  \texttt{arXiv:math/9911165}.
+
+\bibitem{Stanley1979}
+  R.~P.~Stanley,
+  ``Invariants of finite groups and their
+  applications to combinatorics,''
+  Bull.\ Amer.\ Math.\ Soc.\ (N.S.)
+  \textbf{1}, 475--511 (1979).
+
+\bibitem{Koch2019}
+  C.~P.~Koch, M.~Lemeshko, and D.~Sugny,
+  ``Quantum control of molecular rotation,''
+  Rev.\ Mod.\ Phys.\ \textbf{91}, 035005 (2019).
+
+\bibitem{Low2025}
+  M.~L\"ow, M.~Ibr\"ugger, G.~Rempe, and M.~Zeppenfeld,
+  ``Coherence of symmetry-protected rotational qubits
+  in cold polyatomic molecules,''
+  Phys.\ Rev.\ Lett.\ \textbf{134}, 113402 (2025).
+
+\bibitem{Landsman2016}
+  N.~P.~Landsman,
+  ``Quantization and superselection sectors~III:
+  Multiply connected spaces and indistinguishable
+  particles,''
+  Rev.\ Math.\ Phys.\ \textbf{28}, 1650019 (2016);
+  \texttt{arXiv:1302.3637}.
 
 \end{thebibliography}
 
