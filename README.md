@@ -1,4 +1,5 @@
 # st_spinorial_obstruction
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19035819.svg)](https://doi.org/10.5281/zenodo.19035819)
 
 Spectral reflection symmetry and periodic multiplicity structure for quantum rotors on SO(3)/H.
 
